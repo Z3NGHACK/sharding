@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  shard1:
+    image: mysql:latest
+    container_name: mysql_shard1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: shard1
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - shard1_data:/var/lib/mysql
+
+  shard2:
+    image: mysql:latest
+    container_name: mysql_shard2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: shard2
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    volumes:
+      - shard2_data:/var/lib/mysql
+
+  shard3:
+    image: mysql:latest
+    container_name: mysql_shard3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: shard3
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3308:3306"
+    volumes:
+      - shard3_data:/var/lib/mysql
+
+volumes:
+  shard1_data:
+  shard2_data:
+  shard3_data:
